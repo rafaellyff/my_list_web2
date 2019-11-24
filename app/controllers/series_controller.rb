@@ -12,13 +12,18 @@ class SeriesController < ApplicationController
   # GET /series/1
   # GET /series/1.json
   def show
+    @serie = Serie.joins(:formato).select("formatos.descricao, formatos.id").select(:titulo).find(params[:id])  
     render json: @serie
   end
 
   # POST /series
   # POST /series.json
   def create
-    @serie = Serie.new(serie_params)
+    @serie = Serie.new
+    @serie.titulo = params[:serie][:titulo]
+    @serie.formato_id = Integer(params[:serie][:formato])
+    @serie.usuario_id = Integer(params[:serie][:usuario])
+
     if @serie.save
       render json:  @serie
     else
@@ -30,7 +35,7 @@ class SeriesController < ApplicationController
   # PATCH/PUT /series/1
   # PATCH/PUT /series/1.json
   def update
-    if @serie.update(serie_params)
+    if @serie.update(titulo: params[:serie][:titulo], formato_id: Integer(params[:serie][:formato]))
       render json:  @serie
     else
       render json: @serie.errors, status: :unprocessable_entity 
@@ -42,6 +47,29 @@ class SeriesController < ApplicationController
   def destroy
     @serie.update(ativo: false)
     render json: @serie
+  end
+
+  def add_categoria
+    categoria_serie = CategoriaSerie.new
+    categoria_serie.serie_id = params[:categoriaserie][:serie_id]
+    categoria_serie.categoria_id = params[:categoriaserie][:categoria_id]
+    categoria_serie.save
+
+    categorias = CategoriaSerie.joins(:categoria).where(serie_id: params[:categoriaserie][:serie_id]).select("categorias.descricao").select(:id)
+    render json: categorias
+  end
+
+  def excluir_categoria
+    categoria = CategoriaSerie.find(params[:categoriaserie][:categoria_id])
+    categoria.destroy
+
+    categorias = CategoriaSerie.joins(:categoria).where(serie_id: params[:categoriaserie][:serie_id]).select("categorias.descricao").select(:id)
+    render json: categorias
+  end
+
+  def list_categoria
+    categorias = CategoriaSerie.joins(:categoria).where(serie_id: params[:id]).select("categorias.descricao").select(:id)
+    render json: categorias    
   end
 
   private

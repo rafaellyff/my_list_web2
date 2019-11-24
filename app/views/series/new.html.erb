@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-10 offset-1">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-11">
+						<h1>Nova Série</h1>
+					</div>
+					<div class="col-1">
+						<button class="btn btn-secondary voltarSerie">Voltar</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 m-t-40">
+						<div class="form-group">
+							<label>Título</label>
+							<input type="text" class="form-control" id="titulo" placeholder="Título">
+						</div>
+						<div class="form-group">
+							<label>Formato</label>
+							<select id="formato" class=" form-control" placeholder="Formato"></select>
+						</div>
+
+						<div class="form-group">
+							<label>Foto</label>
+							<input type="file" class="form-control" id="foto">
+						</div>
+
+						<input type="text" class="form-control" id="usuario" value="<%= current_usuario.id%>" style="display: none;">
+						<br>
+						<button id="salvarSerie" class="btn btn-success">Salvar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

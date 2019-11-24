@@ -1,0 +1,76 @@
+<div class="row">
+	<div class="col-10 offset-1">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-7">
+						<h1>Visualizar Série</h1>
+					</div>
+					<div class="col-5" style="text-align: right;">
+						<button class="btn btn-danger text-white excluirSerie">Deletar</button>
+						<button class="btn btn-secondary text-white editarSerie">Editar</button>
+						<button class="btn btn-secondary text-white voltarSerie">Voltar</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-3 m-t-40">
+						<img src="<%=image_url("filme.jpg")%>" class="card-img" alt="...">
+					</div>
+					<div class="col-9 m-t-40">
+						<ul>
+							<li><label class="text-bold">Título:</label> <span id="titulo"></span></li>
+							<li><label class="text-bold">Formato:</label> <span id="formato"></span></li>
+							<li>
+								<label class="text-bold">Categoria(s):</label> 
+								<h5 id="lista_categorias">
+								</h5>
+							</li>
+						</ul>
+						<br>
+						<div class="row">
+							<div class="col-8">
+								<select id="categoria" class=" form-control" placeholder="categoria">
+									<option value="">Selecione uma Categoria</option>
+								</select>
+							</div>
+							<div class="col-4">
+								<button class="btn btn-success" id="adicionarCategoriaSerie">Adicionar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<br><hr><br>
+						<h4 class="text-bold text-blue">Episódios</h4>
+						<div class="row" >
+							<div class="col-5" style="padding: 0px">
+								<input type="text" class="form-control" id="tituloEp" placeholder="Título">
+							</div>
+							<div class="col-5">
+								<input type="number" class="form-control" id="duracaoEp" placeholder="Duração">
+							</div>
+							<div class="col-2" style="padding: 0px;">
+								<button class="btn btn-success" id="adicionarEpisodio">Adicionar</button>
+							</div>
+						</div>
+						<table class="table table-hover m-t-40">
+							<thead>
+								<tr>
+									<th>Título</th>
+									<th>Duração <i>(min)</i></th>
+									<th colspan="2"></th>
+								</tr>
+							</thead>
+							<tbody id="listagemEpisodio">
+							</tbody>
+						</table>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%= render "episodios/editar_ep" %>

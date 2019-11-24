@@ -4,23 +4,25 @@ class EpisodiosController < ApplicationController
   # GET /episodios
   # GET /episodios.json
   def index
-  	@episodios = Episodio.where(ativo: true)
-  	
+  	@episodios = Episodio.where(serie_id: params[:serie_id],ativo: true)
     render json: @episodios
   end
 
-  # GET /episodios/1
-  # GET /episodios/1.json
+
   def show
     render json: @episodio
   end
-
+  
   # POST /episodios
   # POST /episodios.json
   def create
-    @episodio = Episodio.new(episodio_params)
+    @episodio = Episodio.new
+    @episodio.titulo = params[:episodio][:titulo]
+    @episodio.duracao = params[:episodio][:duracao]
+    @episodio.serie_id = Integer(params[:episodio][:serie_id])
     if @episodio.save
-      render json:  @episodio
+      @episodios = Episodio.where(serie_id: params[:episodio][:serie_id],ativo: true)
+      render json: @episodios
     else
       render json: @episodio.errors, status: :unprocessable_entity
     end
@@ -31,7 +33,8 @@ class EpisodiosController < ApplicationController
   # PATCH/PUT /episodios/1.json
   def update
     if @episodio.update(episodio_params)
-      render json:  @episodio
+      @episodios = Episodio.where(serie_id: params[:episodio][:serie_id],ativo: true)
+      render json: @episodios
     else
       render json: @episodio.errors, status: :unprocessable_entity 
     end

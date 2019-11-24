@@ -23,9 +23,16 @@ Rails.application.routes.draw do
   			match "ver/:id", to: "filmes#ver", via: :get
   		end
   	end
-  	resources :series 
-  	resources :episodios 
+  	resources :series do
+  		collection do
+  			match "listagem", via: :get
+  			match "list_categoria/:id", to: "series#list_categoria", via: :get
+	  		match "add_categoria", via: :post
+	  		match "excluir_categoria", via: :delete
+  			match "ver/:id", to: "series#ver", via: :get
+  		end
+  	end
 
-
+  	resources :episodios
 	root to: 'filmes#listagem'
 end

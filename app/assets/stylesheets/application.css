@@ -104,5 +104,5 @@ h1{
 }
 
 .close{
-	font-size: inherit;
+	font-size: inherit !important;
 }
