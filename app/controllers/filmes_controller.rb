@@ -4,21 +4,27 @@ class FilmesController < ApplicationController
   # GET /filmes
   # GET /filmes.json
   def index
-    @filmes = Filme.where(ativo: true)
-  	
-    render json: @filmes
+    @filmes = Filme.where(ativo: true, usuario_id: current_usuario.id)
+  	render json: @filmes
   end
 
   # GET /filmes/1
   # GET /filmes/1.json
   def show
+    @filme = Filme.joins(:formato).select("formatos.descricao, formatos.id").select(:titulo, :duracao, :ano).find(params[:id])  
     render json: @filme
   end
 
   # POST /filmes
   # POST /filmes.json
   def create
-    @filme = Filme.new(filme_params)
+    @filme = Filme.new
+    @filme.titulo = params[:filme][:titulo]
+    @filme.formato_id = Integer(params[:filme][:formato])
+    @filme.ano = Integer(params[:filme][:ano])
+    @filme.duracao = Integer(params[:filme][:duracao])
+    @filme.usuario_id = Integer(params[:filme][:usuario])
+
     if @filme.save
       render json:  @filme
     else
@@ -30,7 +36,7 @@ class FilmesController < ApplicationController
   # PATCH/PUT /filmes/1
   # PATCH/PUT /filmes/1.json
   def update
-    if @filme.update(filme_params)
+    if @filme.update(titulo: params[:filme][:titulo], formato_id: Integer(params[:filme][:formato]), ano: Integer(params[:filme][:ano]),duracao: Integer(params[:filme][:duracao]))
       render json:  @filme
     else
       render json: @filme.errors, status: :unprocessable_entity 
@@ -42,6 +48,29 @@ class FilmesController < ApplicationController
   def destroy
     @filme.update(ativo: false)
     render json: @filme
+  end
+
+  def add_categoria
+    categoria_filme = CategoriaFilme.new
+    categoria_filme.filme_id = params[:categoriafilme][:filme_id]
+    categoria_filme.categoria_id = params[:categoriafilme][:categoria_id]
+    categoria_filme.save
+
+    categorias = CategoriaFilme.joins(:categoria).where(filme_id: params[:categoriafilme][:filme_id]).select("categorias.descricao").select(:id)
+    render json: categorias
+  end
+
+  def excluir_categoria
+    categoria = CategoriaFilme.find(params[:categoriafilme][:categoria_id])
+    categoria.destroy
+
+    categorias = CategoriaFilme.joins(:categoria).where(filme_id: params[:categoriafilme][:filme_id]).select("categorias.descricao").select(:id)
+    render json: categorias
+  end
+
+  def list_categoria
+    categorias = CategoriaFilme.joins(:categoria).where(filme_id: params[:id]).select("categorias.descricao").select(:id)
+    render json: categorias    
   end
 
   private

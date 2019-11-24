@@ -1,20 +1,20 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
 
- @font-face {
+@font-face {
 	font-family: 'Titillium Web Bold';
 	src: url('TitilliumWeb-Bold.ttf') format('truetype');
 }
@@ -36,10 +36,15 @@ body{
 
 h1{
 	font-family: 'Titillium Web Bold' !important;
+	color: #007bff !important;
 }
 
 .m-t-40 {
 	margin-top: 40px;
+}
+
+.m-b-40 {
+	margin-bottom: 40px;
 }
 
 .row {
@@ -65,4 +70,39 @@ h1{
 	background-color: #aaa !important;
 	border-color: #aaa !important;
 	color: white !important;
+}
+
+.card-arquivo{
+	border: 0px !important;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.card-img{
+	border-radius: calc(.25rem - 1px) 0 0  calc(.25rem - 1px) !important;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #0067d6 !important;
+    border-color: #0067d6 !important;
+}
+
+.text-blue {
+	color: #007bff !important;
+}
+
+.card-title{
+	margin: 0px !important;
+	font-size: 16px !important;
+}
+
+.close{
+	font-size: inherit;
 }

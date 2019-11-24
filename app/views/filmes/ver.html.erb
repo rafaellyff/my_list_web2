@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col-10 offset-1">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-7">
+						<h1>Visualizar Filme</h1>
+					</div>
+					<div class="col-5" style="text-align: right;">
+						<button class="btn btn-danger text-white excluirFilme">Deletar</button>
+						<button class="btn btn-secondary text-white editarFilme">Editar</button>
+						<button class="btn btn-secondary text-white voltarFilme">Voltar</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4 m-t-40">
+						<img src="<%=image_url("filme.jpg")%>" class="card-img" alt="...">
+					</div>
+					<div class="col-8 m-t-40">
+						<ul>
+						<li><label class="text-bold">Título:</label> <span id="titulo"></span></li>
+						<li><label class="text-bold">Ano:</label> <span id="ano"></span></li>
+						<li><label class="text-bold">Duração:</label> <span id="duracao"></span></li>
+						<li><label class="text-bold">Formato:</label> <span id="formato"></span></li>
+						<li>
+							<label class="text-bold">Categoria(s):</label> 
+							<h5 id="lista_categorias">
+							</h5>
+						</li>
+						</ul>
+						<br>
+						<hr>
+						<div class="row">
+
+							<div class="col-8">
+								<select id="categoria" class=" form-control" placeholder="categoria">
+									<option value="">Selecione uma Categoria</option>
+								</select>
+							</div>
+							<div class="col-4">
+								<button class="btn btn-success" id="adicionarCategoriaFilme">Adicionar</button>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>

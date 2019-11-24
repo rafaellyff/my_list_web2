@@ -134,5 +134,4 @@ if( window.location.pathname.match(/categoria/)){
 		var thisId = $(this).data('id');
 		$(location).attr('href', '/categorias/'+ thisId+'/edit');
 	}
-
 }
