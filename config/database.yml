@@ -28,7 +28,6 @@ development:
   password: postgres
   host: localhost
   port: 5432
-  schema_search_path: my_list_web
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
