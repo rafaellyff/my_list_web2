@@ -1,1 +1,45 @@
-_ver_serie.html.erb
+<div id="verSerieModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="text-bold text-blue">Ver Série</h4>
+				<button type="button" class="close text-bold" data-dismiss="modal" aria-label="Close">
+					<h4><span aria-hidden="true">&times;</span></h4>
+				</button>
+			</div>
+ 
+			<div class="modal-body row">
+				<div class="col-3">
+					<img src="<%=image_url("filme.jpg")%>" class="card-img" alt="...">
+				</div>
+				<div class="col-9">	
+					<ul>
+						<li><label class="text-bold">Título:</label> <span id="tituloSerieAcervo"></span></li>
+						<li><label class="text-bold">Formato:</label> <span id="formatoSerieAcervo"></span></li>
+						<li>
+							<label class="text-bold">Categoria(s):</label> 
+							<h5 id="lista_categoriasSerieAcervo">
+							</h5>
+						</li>
+					</ul>
+				</div>
+				<div class="col-12">
+					<h4 class="text-bold text-blue m-t-40">Episódios</h4>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Título</th>
+								<th>Duração <i>(min)</i></th>
+								<th colspan="2"></th>
+							</tr>
+						</thead>
+						<tbody id="listagemEpisodioAcervo">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

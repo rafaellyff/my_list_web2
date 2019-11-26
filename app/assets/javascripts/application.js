@@ -16,3 +16,22 @@
 //= require activestorage
 //= require_tree .
 
+
+$(document).ready(function() {
+	// BTN MENU
+	$('#seuAcervo').on('click', seuAcervo);
+	$('#acervoAmigos').on('click', acervoAmigos);
+});
+
+
+// TELA DE SEU ACERVO
+function seuAcervo(){
+	$(location).attr('href', '/filmes/listagem');
+}
+
+
+
+// TELA DE ACERVO DE AMIGOS
+function acervoAmigos(){
+	$(location).attr('href', '/acervos/acervo_amigos');
+}

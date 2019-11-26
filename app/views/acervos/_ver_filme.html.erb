@@ -1,5 +1,5 @@
 <div id="verFilmeModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-sm">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="text-bold text-blue">Ver Filme</h4>
@@ -8,19 +8,23 @@
 				</button>
 			</div>
  
-			<div class="modal-body">
-				<img src="<%=image_url("filme.jpg")%>" class="card-img" alt="...">
-				<ul>
-					<li><label class="text-bold">Título:</label> <span id="titulo"></span></li>
-					<li><label class="text-bold">Ano:</label> <span id="ano"></span></li>
-					<li><label class="text-bold">Duração:</label> <span id="duracao"></span></li>
-					<li><label class="text-bold">Formato:</label> <span id="formato"></span></li>
-					<li>
-						<label class="text-bold">Categoria(s):</label> 
-						<h5 id="lista_categorias">
-						</h5>
-					</li>
-				</ul>
+			<div class="modal-body row">
+				<div class="col-4">
+					<img src="<%=image_url("filme.jpg")%>" class="card-img" alt="...">
+				</div>
+				<div class="col-8">	
+					<ul>
+						<li><label class="text-bold">Título:</label> <span id="tituloFilmeAcervo"></span></li>
+						<li><label class="text-bold">Ano:</label> <span id="anoFilmeAcervo"></span></li>
+						<li><label class="text-bold">Duração:</label> <span id="duracaoFilmeAcervo"></span></li>
+						<li><label class="text-bold">Formato:</label> <span id="formatoFilmeAcervo"></span></li>
+						<li>
+							<label class="text-bold">Categoria(s):</label> 
+							<h5 id="lista_categoriasFilmeAcervo">
+							</h5>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
