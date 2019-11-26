@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_19_215536) do
+ActiveRecord::Schema.define(version: 2019_11_26_103111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_215536) do
   create_table "filmes", force: :cascade do |t|
     t.string "titulo"
     t.integer "duracao"
-    t.string "foto"
+    t.string "foto_data"
     t.integer "ano"
     t.bigint "formato_id"
     t.bigint "usuario_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_215536) do
 
   create_table "series", force: :cascade do |t|
     t.string "titulo"
-    t.string "foto"
+    t.string "foto_data"
     t.bigint "formato_id"
     t.bigint "usuario_id"
     t.boolean "ativo", default: true

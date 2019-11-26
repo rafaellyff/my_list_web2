@@ -19,11 +19,7 @@ class SeriesController < ApplicationController
   # POST /series
   # POST /series.json
   def create
-    @serie = Serie.new
-    @serie.titulo = params[:serie][:titulo]
-    @serie.formato_id = Integer(params[:serie][:formato])
-    @serie.usuario_id = Integer(params[:serie][:usuario])
-
+    @serie = resource_params
     if @serie.save
       render json:  @serie
     else
@@ -35,8 +31,9 @@ class SeriesController < ApplicationController
   # PATCH/PUT /series/1
   # PATCH/PUT /series/1.json
   def update
-    if @serie.update(titulo: params[:serie][:titulo], formato_id: Integer(params[:serie][:formato]))
-      render json:  @serie
+    @serie = resource_params
+    if @serie.save
+      render json: @serie
     else
       render json: @serie.errors, status: :unprocessable_entity 
     end
@@ -72,6 +69,18 @@ class SeriesController < ApplicationController
     render json: categorias    
   end
 
+  protected
+
+  def resource_params
+    serie = Serie.new
+    serie = Serie.find params[:id] if params[:id].present?
+    serie.titulo = params[:titulo] if params[:titulo].present?
+    serie.formato_id = Integer(params[:formato]) if params[:formato].present?
+    serie.usuario_id = Integer(params[:usuario]) if params[:usuario].present?
+    serie.foto = params[:foto] if params[:foto].present?
+    serie
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_serie
@@ -80,6 +89,6 @@ class SeriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def serie_params
-      params.require(:serie).permit(:titulo,:formato, :usuario, :ativo)
+      params.permit(:serie, :titulo, :formato, :usuario, :ativo, :foto)
     end
 end

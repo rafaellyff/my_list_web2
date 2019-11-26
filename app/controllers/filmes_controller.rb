@@ -18,13 +18,7 @@ class FilmesController < ApplicationController
   # POST /filmes
   # POST /filmes.json
   def create
-    @filme = Filme.new
-    @filme.titulo = params[:filme][:titulo]
-    @filme.formato_id = Integer(params[:filme][:formato])
-    @filme.ano = Integer(params[:filme][:ano])
-    @filme.duracao = Integer(params[:filme][:duracao])
-    @filme.usuario_id = Integer(params[:filme][:usuario])
-
+    @filme = resource_params
     if @filme.save
       render json:  @filme
     else
@@ -36,7 +30,8 @@ class FilmesController < ApplicationController
   # PATCH/PUT /filmes/1
   # PATCH/PUT /filmes/1.json
   def update
-    if @filme.update(titulo: params[:filme][:titulo], formato_id: Integer(params[:filme][:formato]), ano: Integer(params[:filme][:ano]),duracao: Integer(params[:filme][:duracao]))
+    @filme = resource_params
+    if @filme.save
       render json:  @filme
     else
       render json: @filme.errors, status: :unprocessable_entity 
@@ -73,6 +68,20 @@ class FilmesController < ApplicationController
     render json: categorias    
   end
 
+  protected
+
+  def resource_params
+    filme = Filme.new
+    filme = Filme.find params[:id] if params[:id].present?
+    filme.titulo = params[:titulo] if params[:titulo].present?
+    filme.formato_id = Integer(params[:formato]) if params[:formato].present?
+    filme.ano = Integer(params[:ano]) if params[:ano].present?
+    filme.duracao = Integer(params[:duracao]) if params[:duracao].present?
+    filme.usuario_id = Integer(params[:usuario]) if params[:usuario].present?
+    filme.foto = params[:foto] if params[:foto].present?
+    filme
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_filme
@@ -81,6 +90,6 @@ class FilmesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def filme_params
-      params.require(:filme).permit(:titulo,:duracao, :ano, :formato, :usuario, :ativo)
+      params.permit(:filme, :titulo, :duracao, :ano, :formato, :usuario, :ativo, :foto)
     end
 end
