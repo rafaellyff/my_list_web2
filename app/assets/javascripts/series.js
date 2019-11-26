@@ -52,18 +52,25 @@ if( window.location.pathname.match(/series/)){
 	// ADICIONAR REGISTRO
 	function adicionarSerie(event) {
 		event.preventDefault();
+		var formSerie = new FormData();
 		var titulo = $('#titulo').val();
 		var formato = $('#formato').val();
 		var usuario = $('#usuario').val();
+		var foto = $('#foto').prop('files')[0];
 
-		if (titulo != "" && formato != "") {
-			var serie = { 'titulo': titulo , 'formato': formato, 'usuario': usuario};
-			serie = { "serie": serie }
+		if (titulo != "" && formato != "" && foto) {
+			formSerie.append('titulo', titulo);
+			formSerie.append('formato', formato);
+			formSerie.append('usuario', usuario);
+			formSerie.append('foto', foto);
+			
 			$.ajax({
 				type: 'POST',
-				data: serie,
+				data: formSerie,
 				url: '/series/',
-				dataType:"json",
+				cache: false,
+        contentType: false,
+        processData: false,
 			}).done(function( response ) {
 				$(location).attr('href', '/series/ver/'+ response.id);
 			});
@@ -94,17 +101,23 @@ if( window.location.pathname.match(/series/)){
 	function atualizarSerie(event){
 		event.preventDefault();
 		var id = window.location.pathname.replace(/[^0-9]/g,'');
+		var formSerie = new FormData();
 		var titulo = $('#titulo').val();
 		var formato = $('#formato').val();
+		var foto = $('#foto').prop('files')[0];
 
 		if (titulo != "" && formato != "") {
-			var serie = { 'titulo': titulo , 'formato': formato};
-			serie = { "serie": serie }
+			formSerie.append('titulo', titulo);
+			formSerie.append('formato', formato);
+			if (foto) formSerie.append('foto', foto);
+
 			$.ajax({
 				type: 'PUT',
-				data: serie,
+				data: formSerie,
 				url: '/series/'+id,
-				dataType:"json",
+				cache: false,
+        contentType: false,
+        processData: false,
 			}).done(function( response ) {
 				$(location).attr('href', '/series/ver/'+response.id);
 			});

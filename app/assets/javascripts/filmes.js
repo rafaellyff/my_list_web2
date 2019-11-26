@@ -54,20 +54,29 @@ if( window.location.pathname.match(/filmes/)){
 	// ADICIONAR REGISTRO
 	function adicionarFilme(event) {
 		event.preventDefault();
+		var formFilme = new FormData();
 		var titulo = $('#titulo').val();
 		var ano = $('#ano').val();
 		var duracao = $('#duracao').val();
 		var formato = $('#formato').val();
 		var usuario = $('#usuario').val();
+		var foto = $('#foto').prop('files')[0];
 
 		if (titulo != "" && ano != "" && duracao != "" && formato != "") {
-			var filme = { 'titulo': titulo ,'ano': ano, 'duracao': duracao, 'formato': formato, 'usuario': usuario};
-			filme = { "filme": filme }
+			formFilme.append('titulo', titulo);
+			formFilme.append('ano', ano);
+			formFilme.append('duracao', duracao);
+			formFilme.append('formato', formato);
+			formFilme.append('usuario', usuario);
+			if(foto) formFilme.append('foto', foto);
+
 			$.ajax({
 				type: 'POST',
-				data: filme,
+				data: formFilme,
 				url: '/filmes/',
-				dataType:"json",
+				cache: false,
+        contentType: false,
+        processData: false,
 			}).done(function( response ) {
 				$(location).attr('href', '/filmes/ver/'+ response.id);
 			});
@@ -245,19 +254,27 @@ if( window.location.pathname.match(/filmes/)){
 	function atualizarFilme(event){
 		event.preventDefault();
 		var id = window.location.pathname.replace(/[^0-9]/g,'');
+		var formFilme = new FormData();
 		var titulo = $('#titulo').val();
 		var ano = $('#ano').val();
 		var duracao = $('#duracao').val();
 		var formato = $('#formato').val();
+		var foto = $('#foto').prop('files')[0];
 
 		if (titulo != "" && ano != "" && duracao != "" && formato != "") {
-			var filme = { 'titulo': titulo ,'ano': ano, 'duracao': duracao, 'formato': formato};
-			filme = { "filme": filme }
+			formFilme.append('titulo', titulo);
+			formFilme.append('ano', ano);
+			formFilme.append('duracao', duracao);
+			formFilme.append('formato', formato);
+			if (foto) formFilme.append('foto', foto);
+
 			$.ajax({
 				type: 'PUT',
-				data: filme,
+				data: formFilme,
 				url: '/filmes/'+id,
-				dataType:"json",
+				cache: false,
+        contentType: false,
+        processData: false,
 			}).done(function( response ) {
 				$(location).attr('href', '/filmes/ver/'+response.id);
 			});
