@@ -33,6 +33,16 @@ Rails.application.routes.draw do
   		end
   	end
 
-  	resources :episodios
-	root to: 'filmes#listagem'
+  resources :episodios
+	
+  get 'acervos/usuarios'
+  get 'acervos/acervo_amigos'
+  get 'acervos/usuario_lista'
+  match "acervos/ver_usuario/:id", to: "acervos#ver_usuario", via: :get
+  match "acervos/filmes_usuario/:id", to: "acervos#filmes_usuario", via: :get
+  match "acervos/series_usuario/:id", to: "acervos#series_usuario", via: :get
+
+
+  root to: 'filmes#listagem'
+
 end
