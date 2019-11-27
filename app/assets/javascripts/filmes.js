@@ -104,7 +104,29 @@ if( window.location.pathname.match(/filmes/)){
     		url: '/filmes',
     		success: function(filmes){
     			$.each(filmes, function(i, filme) {
-    				$listagem.append('<div class="col-4"><div class="card card-arquivo"><div class="row no-gutters"><div class="col-md-3"><img src="./images/filme.jpg%>" class="card-img" alt="..."></div><div class="col-md-9" style=" display: flex;align-items: center;"><div class="card-body"><div class="row no-gutters"><div class="col-md-12"><a href="#" class="card-link" data-id="'+ this.id +'"><h6 class="card-title text-bold">' + this.titulo + '</h6></a></div></div></div></div></div></div></div>');
+						console.log(this)
+						$listagem.append(`
+							<div class="col-4">
+								<div class="card card-arquivo">
+									<div class="row no-gutters">
+										<div class="col-md-3">
+											<img src="${this.foto_url}" class="card-img" alt="...">
+										</div>
+										<div class="col-md-9" style=" display: flex;align-items: center;">
+											<div class="card-body">
+												<div class="row no-gutters">
+													<div class="col-md-12">
+														<a href="#" class="card-link" data-id="${this.id}">
+															<h6 class="card-title text-bold">${this.titulo}</h6>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						`);
     			});
     		}
     	});
@@ -213,6 +235,7 @@ if( window.location.pathname.match(/filmes/)){
 			$('#duracao').text(data.duracao);
 			$('#titulo').text(data.titulo);
 			$('#formato').text(data.descricao);
+			$("#foto").attr("src", data.foto_url);
 		});
 	}
 

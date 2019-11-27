@@ -3,6 +3,10 @@
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="background-color: white; border-radius: 5px;">
       <a class="nav-link active" id="filmes-tab" data-toggle="pill" href="#filmes" role="tab" aria-controls="filmes" aria-selected="true">Filmes</a>
       <a class="nav-link" id="series-tab" data-toggle="pill" href="#series" role="tab" aria-controls="series" aria-selected="false">Séries</a>
+      <% if current_usuario.admin %>
+        <a class="nav-link" id="formatos-tab" data-toggle="pill" href="#formatos" role="tab" aria-controls="formatos" aria-selected="false">Formatos</a>
+        <a class="nav-link" id="categorias-tab" data-toggle="pill" href="#categorias" role="tab" aria-controls="categorias" aria-selected="false">Categorias</a>
+      <% end %>
     </div>
   <br>
   <div class="row">
@@ -13,6 +17,19 @@
       <button class="btn btn-success btn-block" id="novaSerie">Nova Série</button>
     </div>
   </div>
+
+  <% if current_usuario.admin %>
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <a href="/formatos/new" class="btn btn-success btn-block" id="novoFormato">Novo Formato</a>
+      </div>
+      <div class="col-6">
+        <a href="/categorias/new" class="btn btn-success btn-block" id="novaCategoria">Nova Categoria</a>
+      </div>
+    </div>
+  <% end %>
+
   </div>
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">

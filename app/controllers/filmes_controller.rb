@@ -5,14 +5,16 @@ class FilmesController < ApplicationController
   # GET /filmes.json
   def index
     @filmes = Filme.where(ativo: true, usuario_id: current_usuario.id)
-  	render json: @filmes
+  	render json: @filmes.map(&:encode)
   end
 
   # GET /filmes/1
   # GET /filmes/1.json
   def show
-    @filme = Filme.joins(:formato).select("formatos.descricao, formatos.id").select(:titulo, :duracao, :ano).find(params[:id])  
-    render json: @filme
+    @filme = Filme.joins(:formato).select("formatos.descricao, formatos.id").select(:titulo, :duracao, :ano, :foto_data).find(params[:id])  
+    response = @filme.as_json
+    response[:foto_url] = @filme.foto_url
+    render json: response
   end
 
   # POST /filmes

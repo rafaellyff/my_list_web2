@@ -4,16 +4,17 @@ class SeriesController < ApplicationController
   # GET /series
   # GET /series.json
   def index
-  	@series = Serie.where(ativo: true)
-  	
-    render json: @series
+    @series = Serie.where(ativo: true)
+    render json: @series.map(&:encode)
   end
 
   # GET /series/1
   # GET /series/1.json
   def show
-    @serie = Serie.joins(:formato).select("formatos.descricao, formatos.id").select(:titulo).find(params[:id])  
-    render json: @serie
+    @serie = Serie.joins(:formato).select("formatos.descricao, formatos.id").select(:titulo, :foto_data).find(params[:id])  
+    response = @serie.as_json
+    response[:foto_url] = @serie.foto_url
+    render json: response
   end
 
   # POST /series
