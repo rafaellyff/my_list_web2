@@ -6,6 +6,7 @@ class Serie < ApplicationRecord
 
   def encode
     hash = {
+      id: id,
       titulo: titulo,
       foto_url: foto_url,
       formato: formato.descricao,

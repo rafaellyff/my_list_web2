@@ -104,7 +104,6 @@ if( window.location.pathname.match(/filmes/)){
     		url: '/filmes',
     		success: function(filmes){
     			$.each(filmes, function(i, filme) {
-						console.log(this)
 						$listagem.append(`
 							<div class="col-4">
 								<div class="card card-arquivo">
@@ -135,7 +134,7 @@ if( window.location.pathname.match(/filmes/)){
   	// ABRIR TELA DE VISUALIZAR
   	function verFilme(event){
   		event.preventDefault();
-  		var thisId = $(this).data('id');
+			var thisId = $(this).data('id');
   		$(location).attr('href', '/filmes/ver/'+ thisId);
   	}
 

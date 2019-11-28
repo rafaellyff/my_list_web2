@@ -6,6 +6,7 @@ class Filme < ApplicationRecord
 
   def encode
     hash = {
+      id: id,
       ano: ano,
       titulo: titulo,
       duracao: duracao,
