@@ -17,7 +17,7 @@ class AcervosController < ApplicationController
 
 	def series_usuario
 		@series = Serie.where(ativo: true, usuario_id: params[:id])
-		render json: @series
+		render json: @series.map(&:encode)
 	end
 
 

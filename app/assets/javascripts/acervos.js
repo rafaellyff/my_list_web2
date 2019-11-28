@@ -66,8 +66,8 @@ function listagemSerie(){
 		type: 'GET',
 		dataType: 'json',
 		url: '/acervos/series_usuario/'+ id,
-		success: function(filmes){
-			$.each(filmes, function(i, filme) {
+		success: function(series){
+			$.each(series, function(i, serie) {
 				$listagem.append('<div class="col-4"><div class="card card-arquivo"><div class="row no-gutters"><div class="col-md-3"><img src=" ' + this.foto_url + '" class="card-img" alt="..."></div><div class="col-md-9" style=" display: flex;align-items: center;"><div class="card-body"><div class="row no-gutters"><div class="col-md-12"><a href="#" class="card-link btnModalSerie" data-id="'+ this.id +'"><h6 class="card-title text-bold">' + this.titulo + '</h6></a></div></div></div></div></div></div></div>');
 			});
 		}
