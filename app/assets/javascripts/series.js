@@ -1,5 +1,9 @@
 if( window.location.pathname.match(/series/)){
-	$(document).ready(function() {
+	$(document).on("turbolinks:load", function() {
+		$.getJSON('/info/current_usuario').done(function(user) {
+			if (user.admin) $(location).attr('href', '/categorias/listagem');
+		})
+
 		if ( window.location.pathname.match(/edit/)) {
 			selectFormato()
 			formEditarSerie();
@@ -348,7 +352,7 @@ if( window.location.pathname.match(/series/)){
 // ACERVO NA TELA DE FILMES
 
 if( window.location.pathname.match(/filmes/) || window.location.href == "http://localhost:3000/"){
-	$(document).ready(function() {
+	$(document).on("turbolinks:load", function() {
 		if ( window.location.pathname.match(/listagem/) || window.location.href == "http://localhost:3000/") {
 			listagemSerie();
 		}

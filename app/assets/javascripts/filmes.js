@@ -1,6 +1,6 @@
 // CASO SEJA NO RAILS ROOT
 if (window.location.href == "http://localhost:3000/" ) {
-	$(document).ready(function() {
+	$(document).on("turbolinks:load", function() {
 		listagemFilme();
 		// TELA DE NOVO
 		$('#novoFilme').on('click', novoFilme);
@@ -10,7 +10,11 @@ if (window.location.href == "http://localhost:3000/" ) {
 }
 
 if( window.location.pathname.match(/filmes/)){
-	$(document).ready(function() {
+	$(document).on("turbolinks:load", function() {
+		$.getJSON('/info/current_usuario').done(function(user) {
+			if (user.admin) $(location).attr('href', '/categorias/listagem');
+		})
+
 		if( window.location.pathname.match(/listagem/)){
 			listagemFilme();
 		} else if ( window.location.pathname.match(/edit/)) {

@@ -4,7 +4,7 @@ class SeriesController < ApplicationController
   # GET /series
   # GET /series.json
   def index
-    @series = Serie.where(ativo: true)
+    @series = Serie.where(ativo: true).where(usuario: current_usuario)
     render json: @series.map(&:encode)
   end
 

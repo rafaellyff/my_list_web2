@@ -1,5 +1,9 @@
 if( window.location.pathname.match(/categoria/)){
-	$(document).ready(function() {
+	$(document).on("turbolinks:load", function() {
+		$.getJSON('/info/current_usuario').done(function(user) {
+			if (!user.admin) $(location).attr('href', '/filmes/listagem');
+		})
+
 		if( window.location.pathname.match(/listagem/)){
 			listagemCategoria();
 		} else if ( window.location.pathname.match(/edit/)) {

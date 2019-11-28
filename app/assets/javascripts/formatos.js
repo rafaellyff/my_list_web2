@@ -1,5 +1,10 @@
 if( window.location.pathname.match(/formato/)){
-	$(document).ready(function() {
+	$(document).on("turbolinks:load", function() {
+		console.log('here')
+		$.getJSON('/info/current_usuario').done(function(user) {
+			if (!user.admin) $(location).attr('href', '/filmes/listagem');
+		})
+
 		if( window.location.pathname.match(/listagem/)){
 			listagemFormato();
 		} else if ( window.location.pathname.match(/edit/)) {
@@ -94,7 +99,18 @@ if( window.location.pathname.match(/formato/)){
 			url: '/formatos',
 			success: function(formatos){
 				$.each(formatos, function(i, formato) {
-					$listagem.append('<tr><td>'+this.descricao+'</td><td><a href="#" class="btn btn-light btnVer" data-id="' + this.id + '">Visualizar</a></td><td><a href="#" class="btn btn-light btnEditar" data-id="' + this.id + '">Editar</a></td><td><a href="#" class="btn btn-danger text-white btnDeletar" data-id="' + this.id + '">Deletar</a></td></tr>');
+					$listagem.append(`
+					<tr>
+						<td>${this.descricao}</td>
+						<td>
+							<a href="#" class="btn btn-light btnVer" data-id="${this.id}">Visualizar</a>
+							</td><td>
+							<a href="#" class="btn btn-light btnEditar" data-id="${this.id}">Editar</a>
+							</td><td>
+							<a href="#" class="btn btn-danger text-white btnDeletar" data-id="${this.id}">Deletar</a>
+						</td>
+					</tr>
+					`);
 				});
 			}
 		});

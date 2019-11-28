@@ -17,11 +17,24 @@
 //= require_tree .
 
 
-$(document).ready(function() {
+$(document).on("turbolinks:load", function() {
 	// BTN MENU
 	$('#seuAcervo').on('click', seuAcervo);
 	$('#acervoAmigos').on('click', acervoAmigos);
+	$('#todosFormatos').on('click', todosFormatos);
+	$('#todasCategorias').on('click', todasCategorias);
 	$('#sair').on('click', sair);
+
+	$.getJSON('/info/current_usuario').done(function(user) {
+		if (user.admin) {
+			$('#seuAcervoNav').detach()
+			$('#acervoAmigosNav').detach()
+			if (window.location.pathname === '/') $(location).attr('href', '/formatos/listagem');
+		} else {
+			$('#todosFormatos').detach()
+			$('#todasCategorias').detach()
+		}
+	})
 });
 
 
@@ -37,6 +50,16 @@ function seuAcervo(event){
 function acervoAmigos(event){
 	event.preventDefault();
 	$(location).attr('href', '/acervos/acervo_amigos');
+}
+
+function todosFormatos(event){
+	event.preventDefault();
+	$(location).attr('href', '/formatos/listagem');
+}
+
+function todasCategorias(event){
+	event.preventDefault();
+	$(location).attr('href', '/categorias/listagem');
 }
 
 // SAIR

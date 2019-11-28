@@ -1,5 +1,5 @@
 if( window.location.pathname.match(/acervos/)){
-	$(document).ready(function() {
+	$(document).on("turbolinks:load", function() {
 		if( window.location.pathname.match(/acervo_amigos/)){
 			listagemUsuarios();
 		} else if( window.location.pathname.match(/usuario_lista/)){

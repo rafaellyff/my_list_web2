@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   match "acervos/filmes_usuario/:id", to: "acervos#filmes_usuario", via: :get
   match "acervos/series_usuario/:id", to: "acervos#series_usuario", via: :get
 
+	get '/info/current_usuario', to: 'usuarios#user', as: :user
 
   root to: 'filmes#listagem'
-
 end
