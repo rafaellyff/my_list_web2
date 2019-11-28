@@ -104,7 +104,7 @@ if( window.location.pathname.match(/filmes/)){
     		url: '/filmes',
     		success: function(filmes){
     			$.each(filmes, function(i, filme) {
-						console.log(this)
+						console.log(filmes)
 						$listagem.append(`
 							<div class="col-4">
 								<div class="card card-arquivo">

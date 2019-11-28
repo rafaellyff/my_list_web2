@@ -50,8 +50,9 @@ function listagemFilme(){
 		dataType: 'json',
 		url: '/acervos/filmes_usuario/'+ id,
 		success: function(filmes){
+			console.log(filmes)
 			$.each(filmes, function(i, filme) {
-				$listagem.append('<div class="col-4"><div class="card card-arquivo"><div class="row no-gutters"><div class="col-md-3"><img src="./images/filme.jpg%>" class="card-img" alt="..."></div><div class="col-md-9" style=" display: flex;align-items: center;"><div class="card-body"><div class="row no-gutters"><div class="col-md-12"><a href="#" class="card-link btnModalFilme" data-id="'+ this.id +'"><h6 class="card-title text-bold">' + this.titulo + '</h6></a></div></div></div></div></div></div></div>');
+				$listagem.append('<div class="col-4"><div class="card card-arquivo"><div class="row no-gutters"><div class="col-md-3"><img src="' + this.foto_url +'" class="card-img" alt="..."></div><div class="col-md-9" style=" display: flex;align-items: center;"><div class="card-body"><div class="row no-gutters"><div class="col-md-12"><a href="#" class="card-link btnModalFilme" data-id="'+ this.id +'"><h6 class="card-title text-bold">' + this.titulo + '</h6></a></div></div></div></div></div></div></div>');
 			});
 		}
 	});
@@ -67,7 +68,7 @@ function listagemSerie(){
 		url: '/acervos/series_usuario/'+ id,
 		success: function(filmes){
 			$.each(filmes, function(i, filme) {
-				$listagem.append('<div class="col-4"><div class="card card-arquivo"><div class="row no-gutters"><div class="col-md-3"><img src="./images/filme.jpg%>" class="card-img" alt="..."></div><div class="col-md-9" style=" display: flex;align-items: center;"><div class="card-body"><div class="row no-gutters"><div class="col-md-12"><a href="#" class="card-link btnModalSerie" data-id="'+ this.id +'"><h6 class="card-title text-bold">' + this.titulo + '</h6></a></div></div></div></div></div></div></div>');
+				$listagem.append('<div class="col-4"><div class="card card-arquivo"><div class="row no-gutters"><div class="col-md-3"><img src=" ' + this.foto_url + '" class="card-img" alt="..."></div><div class="col-md-9" style=" display: flex;align-items: center;"><div class="card-body"><div class="row no-gutters"><div class="col-md-12"><a href="#" class="card-link btnModalSerie" data-id="'+ this.id +'"><h6 class="card-title text-bold">' + this.titulo + '</h6></a></div></div></div></div></div></div></div>');
 			});
 		}
 	});
@@ -82,6 +83,7 @@ function preencherVerFilmeModal(event) {
 	event.preventDefault();
 	var thisId = $(this).data('id');
 	$.getJSON('/filmes/' + thisId).done(function(data) {
+		$('#imgFilmeAcervo').attr("src", data.foto_url);
 		$('#tituloFilmeAcervo').text(data.titulo);
 		$('#duracaoFilmeAcervo').text(data.duracao);
 		$('#formatoFilmeAcervo').text(data.descricao);
@@ -103,6 +105,7 @@ function preencherVerSerieModal(event) {
 
 	var thisId = $(this).data('id');
 	$.getJSON('/series/' + thisId).done(function(data) {
+		$('#imgSerieAcervo').attr("src", data.foto_url);
 		$('#tituloSerieAcervo').text(data.titulo);
 		$('#formatoSerieAcervo').text(data.descricao);
 		

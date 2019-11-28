@@ -11,7 +11,7 @@ class FilmesController < ApplicationController
   # GET /filmes/1
   # GET /filmes/1.json
   def show
-    @filme = Filme.joins(:formato).select("formatos.descricao, formatos.id").select(:titulo, :duracao, :ano, :foto_data).find(params[:id])  
+    @filme = Filme.joins(:formato).select("formatos.descricao").select(:titulo, :duracao, :ano, :foto_data, :id).find(params[:id])  
     response = @filme.as_json
     response[:foto_url] = @filme.foto_url
     render json: response

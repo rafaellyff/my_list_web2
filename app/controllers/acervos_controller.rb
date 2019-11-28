@@ -12,7 +12,7 @@ class AcervosController < ApplicationController
 
 	def filmes_usuario
 		@filmes = Filme.where(ativo: true, usuario_id: params[:id])
-		render json: @filmes
+		render json: @filmes.map(&:encode)
 	end
 
 	def series_usuario
