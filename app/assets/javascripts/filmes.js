@@ -104,7 +104,6 @@ if( window.location.pathname.match(/filmes/)){
     		url: '/filmes',
     		success: function(filmes){
     			$.each(filmes, function(i, filme) {
-						console.log(filmes)
 						$listagem.append(`
 							<div class="col-4">
 								<div class="card card-arquivo">
@@ -135,7 +134,7 @@ if( window.location.pathname.match(/filmes/)){
   	// ABRIR TELA DE VISUALIZAR
   	function verFilme(event){
   		event.preventDefault();
-  		var thisId = $(this).data('id');
+			var thisId = $(this).data('id');
   		$(location).attr('href', '/filmes/ver/'+ thisId);
   	}
 
@@ -296,8 +295,8 @@ if( window.location.pathname.match(/filmes/)){
 				data: formFilme,
 				url: '/filmes/'+id,
 				cache: false,
-        contentType: false,
-        processData: false,
+		        contentType: false,
+		        processData: false,
 			}).done(function( response ) {
 				$(location).attr('href', '/filmes/ver/'+response.id);
 			});
