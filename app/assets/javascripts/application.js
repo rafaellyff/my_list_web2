@@ -21,17 +21,26 @@ $(document).ready(function() {
 	// BTN MENU
 	$('#seuAcervo').on('click', seuAcervo);
 	$('#acervoAmigos').on('click', acervoAmigos);
+	$('#sair').on('click', sair);
 });
 
 
 // TELA DE SEU ACERVO
-function seuAcervo(){
+function seuAcervo(event){
+	event.preventDefault();
 	$(location).attr('href', '/filmes/listagem');
 }
 
 
 
 // TELA DE ACERVO DE AMIGOS
-function acervoAmigos(){
+function acervoAmigos(event){
+	event.preventDefault();
 	$(location).attr('href', '/acervos/acervo_amigos');
+}
+
+// SAIR
+function sair(event){
+	event.preventDefault();
+	$(location).attr('href', '/usuarios/sign_out/');
 }

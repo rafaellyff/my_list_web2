@@ -1,3 +1,14 @@
+// CASO SEJA NO RAILS ROOT
+if (window.location.href == "http://localhost:3000/" ) {
+	$(document).ready(function() {
+		listagemFilme();
+		// TELA DE NOVO
+		$('#novoFilme').on('click', novoFilme);
+		// VER FILME
+		$('#listagemFilme').on('click', '.card-link', verFilme);
+	});
+}
+
 if( window.location.pathname.match(/filmes/)){
 	$(document).ready(function() {
 		if( window.location.pathname.match(/listagem/)){
@@ -38,7 +49,7 @@ if( window.location.pathname.match(/filmes/)){
 		// VER FILME
 		$('#listagemFilme').on('click', '.card-link', verFilme);
 	});
-
+}
 
 	function selectFormato(){
 		let dropdown = $('#formato');
@@ -312,4 +323,3 @@ if( window.location.pathname.match(/filmes/)){
 	}
 
 
-}

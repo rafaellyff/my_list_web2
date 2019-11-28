@@ -347,9 +347,9 @@ if( window.location.pathname.match(/series/)){
 
 // ACERVO NA TELA DE FILMES
 
-if( window.location.pathname.match(/filmes/)){
+if( window.location.pathname.match(/filmes/) || window.location.href == "http://localhost:3000/"){
 	$(document).ready(function() {
-		if ( window.location.pathname.match(/listagem/)) {
+		if ( window.location.pathname.match(/listagem/) || window.location.href == "http://localhost:3000/") {
 			listagemSerie();
 		}
 		// VER SERIE

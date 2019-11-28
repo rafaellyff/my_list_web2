@@ -4,8 +4,8 @@ if( window.location.pathname.match(/acervos/)){
 			listagemUsuarios();
 		} else if( window.location.pathname.match(/usuario_lista/)){
 			preencherVerUsuario();
-			listagemFilme();
-			listagemSerie();
+			listagemFilmeUsu();
+			listagemSerieUsu();
 		} 
 
 		// VER ACERVO DE UM USUÁRIO
@@ -42,7 +42,7 @@ function preencherVerUsuario(){
 }
 
 // LISTAGEM DE FILME
-function listagemFilme(){
+function listagemFilmeUsu(){
 	var id = localStorage.getItem("usu_acervo_id");
 	var $listagem = $('#listaUsuarioFilme'); 
 	$.ajax({  
@@ -59,7 +59,7 @@ function listagemFilme(){
 }
 
 // LISTAGEM DE SERIE
-function listagemSerie(){
+function listagemSerieUsu(){
 	var id = localStorage.getItem("usu_acervo_id");
 	var $listagem = $('#listaUsuarioSerie'); 
 	$.ajax({  

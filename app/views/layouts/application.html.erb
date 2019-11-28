@@ -13,21 +13,30 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light m-b-40">
-    <a class="navbar-brand text-bold text-blue" href="#">MY LIST</a>
+    <span class="navbar-brand text-bold text-blue">MY LIST</span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="seuAcervo">Seu Acervo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="acervoAmigos">Acervo de Amigos</a>
-          </li>
-        </ul>
-      </div>
+      <%if !current_usuario.blank?%>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <% if controller_name != 'registrations' %>
+              <li class="nav-item">
+                <%= link_to "Seu Perfil", "/usuarios/edit", class: "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="seuAcervo">Seu Acervo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="acervoAmigos">Acervo de Amigos</a>
+              </li> 
+            <%end%>
+          </ul>
+          <span class="navbar-text">
+          <%= link_to "Sair", "/usuarios/sign_out", :method => :delete, :"data-ajax" => "false" %>
+          </span>
+        </div>
+      <%end%>
     </nav>
     <%= yield %>
   </body>

@@ -3,6 +3,8 @@ class Serie < ApplicationRecord
 
   belongs_to :formato
   belongs_to :usuario
+  has_many :episodios, dependent: :destroy
+  has_many :categoria_series, dependent: :destroy
 
   def encode
     hash = {

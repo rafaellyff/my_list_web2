@@ -3,6 +3,7 @@ class Filme < ApplicationRecord
   
   belongs_to :formato
   belongs_to :usuario
+  has_many :categoria_filmes, dependent: :destroy
 
   def encode
     hash = {
